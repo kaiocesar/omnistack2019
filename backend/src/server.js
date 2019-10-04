@@ -1,9 +1,10 @@
 const express = require('express');
+const routes = require('./routes');
 
 const app = express();
 
-app.get('/', (req, res) => {
-	res.json({message: "Essa é uma msg em formato json"});
-});
+app.use(express.json());
+
+app.use(routes);
 
 app.listen(4001);
