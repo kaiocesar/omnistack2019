@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import api from './services/api'
 
-import logo from "./assets/logo.svg"
 
 function App() {
+  const [email, setEmail] = useState('');
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const response = await api.post('/sessions', { email });
+     
+  }
+
+
   return (
     <div className="container">
       <img src="" alt=""/>
@@ -12,9 +21,16 @@ function App() {
         <p>
           Ofereça <strong>spots</strong> para programadores e encontre <strong>talentos</strong> para a sua empresa.
         </p>
-        <form action="">
-          <label htmlFor="">E-mail</label>
-          <input type="email" id="email"/>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">E-mail *</label>
+          <input 
+            type="email" 
+            id="email" 
+            placeholder="Seu melhor e-mail"
+            value={email}
+            onChange={event => setEmail(event.target.value)}  />
+
+          <button className="btn" type="submit">Entrar</button>
         </form>
       </div>
     </div>
