@@ -7,6 +7,7 @@ module.exports = {
         if (!user) {
             user = await UserModel.create({ email, name, age, activate: false });
         }
+
         return res.json(user);
     }
 };
